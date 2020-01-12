@@ -1,0 +1,5 @@
+node_modules
+.expo
+.expo-shared
+web-build
+web-report

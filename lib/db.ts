@@ -31,7 +31,7 @@ interface DB {
   exportAllData: (
     db: RxDatabase,
   ) => Promise<{ budgets: T.Budget[]; expenses: T.Expense[] }>;
-  deleteAllData: () => Promise<void>;
+  deleteAllData: (localDb: RxDatabase) => Promise<void>;
 }
 
 type BudgetDocument = RxDocument<T.Budget>;
@@ -359,7 +359,7 @@ const DB: DB = {
   },
   importData: async (db, replaceData, budgets, expenses) => {
     if (replaceData) {
-      await DB.deleteAllData();
+      await DB.deleteAllData(db);
     }
 
     await db.budgets.bulkInsert(budgets);
@@ -395,7 +395,10 @@ const DB: DB = {
       .sort(sortByDate);
     return { budgets: sortedBudgets, expenses: sortedExpenses };
   },
-  deleteAllData: async () => {
+  deleteAllData: async (localDb: RxDatabase) => {
+    await localDb.budgets.remove();
+    await localDb.expenses.remove();
+
     const db = new RxDB.PouchDB(localDbName);
     // @ts-ignore erase comes from pouchdb-erase
     db.erase();

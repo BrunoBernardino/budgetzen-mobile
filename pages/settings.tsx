@@ -231,7 +231,7 @@ class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
             <Text style={styles.label}>Currency</Text>
             <SegmentedControlIOS
               values={currencyLabels}
-              selectedIndex={currency === '' || currency === '$' ? 0 : 1}
+              selectedIndex={currency === '' || currency === 'USD' ? 0 : 1}
               style={styles.currencyToggle}
               tintColor="#fff"
               onChange={(

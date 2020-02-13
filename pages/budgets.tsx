@@ -126,17 +126,19 @@ class BudgetsPage extends Component<BudgetsPageProps, BudgetsPageState> {
       .sort(sortByMissingBudget);
 
     // Add Total budget
-    budgetsToShow.unshift({
-      id: 'total',
-      name: 'Total',
-      value: totalBudget,
-      expensesCost: totalCost,
-      month: monthInView,
-      style: {
-        backgroundColor: '#efefef',
-        shadowOpacity: 0.2,
-      },
-    });
+    if (budgetsToShow.length > 0) {
+      budgetsToShow.unshift({
+        id: 'total',
+        name: 'Total',
+        value: totalBudget,
+        expensesCost: totalCost,
+        month: monthInView,
+        style: {
+          backgroundColor: '#efefef',
+          shadowOpacity: 0.2,
+        },
+      });
+    }
 
     return (
       <SafeAreaView style={styles.wrapper} removeClippedSubviews={false}>

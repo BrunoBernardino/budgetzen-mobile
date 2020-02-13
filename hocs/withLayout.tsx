@@ -153,6 +153,9 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
         const nextMonth = moment()
           .add(1, 'month')
           .format('YYYY-MM');
+        const previousMonth = moment()
+          .subtract(1, 'month')
+          .format('YYYY-MM');
 
         if (
           (monthToLoad && monthToLoad === nextMonth) ||
@@ -167,7 +170,7 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
           (monthToLoad && monthToLoad === currentMonth) ||
           (!monthToLoad && monthInView === currentMonth)
         ) {
-          await DB.copyBudgets(this.db, currentMonth, currentMonth);
+          await DB.copyBudgets(this.db, previousMonth, currentMonth);
           await this.loadData({ monthToLoad });
           return;
         }
@@ -309,7 +312,8 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
     deleteAllData = async () => {
       try {
         await this.loadData({ forceReload: true });
-        await DB.deleteAllData();
+        await DB.deleteAllData(this.db);
+        await this.db.remove();
         await this.loadData({ forceReload: true });
         return true;
       } catch (error) {

@@ -1,5 +1,7 @@
 # Budgets, calm.
 
+[![](https://github.com/BrunoBernardino/BudgetsCalm/workflows/Run%20Tests/badge.svg)](https://github.com/BrunoBernardino/BudgetsCalm/actions?workflow=Run+Tests)
+
 This is the repo for the mobile app. Website is at https://budgets.calm.sh
 
 ## Development

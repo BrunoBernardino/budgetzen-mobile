@@ -4,7 +4,7 @@
     "slug": "BudgetsCalm",
     "privacy": "public",
     "platforms": ["ios", "android", "web"],
-    "version": "1.0.4",
+    "version": "1.0.5",
     "orientation": "portrait",
     "backgroundColor": "#ffffff",
     "primaryColor": "#000000",
@@ -19,7 +19,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "5",
+      "buildNumber": "6",
       "supportsTablet": true,
       "usesIcloudStorage": true,
       "userInterfaceStyle": "automatic",

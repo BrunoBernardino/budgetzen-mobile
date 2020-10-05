@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const NoBudgetsFound: React.SFC<{}> = (): JSX.Element => {
+const NoBudgetsFound: React.SFC<any> = (): JSX.Element => {
   return (
     <Text style={styles.noBudgetsFound}>
       No budgets found for this month.{'\n'}Add one below!

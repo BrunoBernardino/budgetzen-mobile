@@ -16,7 +16,7 @@ make build  # builds iOS
 make upload  # uploads iOS build to the App Store
 ```
 
-https://docs.expo.io/versions/v36.0.0/distribution/building-standalone-apps/#5-test-it-on-your-device-or for testing on iOS simulator (does NOT require `make build`, `make deploy`, nor `make upload`)
+https://docs.expo.io/versions/v39.0.0/distribution/building-standalone-apps/#5-test-it-on-your-device-or for testing on iOS simulator (does NOT require `make build`, `make deploy`, nor `make upload`)
 
 ## TODOs:
 

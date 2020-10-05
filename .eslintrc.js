@@ -69,6 +69,11 @@ const eslint = {
       'error',
       { declaration: false, assignment: false },
     ],
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    '@typescript-eslint/ban-ts-comment': 'off',
+    'react/require-default-props': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   parserOptions: {
     ecmaFeatures: {

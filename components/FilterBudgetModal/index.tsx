@@ -7,7 +7,7 @@ import * as T from '../../lib/types';
 
 // TODO: Get these colors from the withLayout, according to the light/dark mode
 const styles = StyleSheet.create({
-  intro: { fontSize: 16, marginBottom: 20, color: '#999' },
+  intro: { fontSize: 16, marginBottom: 20, marginTop: 20, color: '#999' },
 
   budgetContainer: {
     flex: 1,
@@ -55,7 +55,7 @@ const FilterBudgetModal: React.SFC<FilterBudgetModalProps> = (
         >
           <Text style={styles.budgetName}>{budget.name}</Text>
           <Switch
-            trackColor={{ false: '#CCC', true: '#000' }}
+            trackColor={{ false: '#CCC', true: '#80A881' }}
             value={props.filterBudgets.has(budget.name)}
             onValueChange={props.onFilterBudgetToggle.bind(null, budget.name)}
           />

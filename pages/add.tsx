@@ -143,15 +143,20 @@ class AddPage extends Component<AddPageProps, AddPageState> {
       date,
     };
 
-    const success = await saveExpense(parsedExpense);
+    try {
+      const success = await saveExpense(parsedExpense);
+
+      if (success) {
+        this.setState({ cost: '', description: '', budget: '', date: '' });
+        this.inputRefs.budget.onValueChange('Misc', 0);
+        showNotification('Expense added successfully.');
+      }
+    } catch (error) {
+      console.log('Failed to add expense');
+      console.log(error);
+    }
 
     this.setState({ isSubmitting: false });
-
-    if (success) {
-      this.setState({ cost: '', description: '', budget: '', date: '' });
-      this.inputRefs.budget.onValueChange('Misc', 0);
-      showNotification('Expense added successfully.');
-    }
   };
 
   InputAccessoryView() {
@@ -175,7 +180,13 @@ class AddPage extends Component<AddPageProps, AddPageState> {
 
   render() {
     const { isLoading, isUsingDarkMode, budgets, loadData } = this.props;
-    const { isDatePickerVisible, cost, description, date } = this.state;
+    const {
+      isDatePickerVisible,
+      cost,
+      description,
+      date,
+      isSubmitting,
+    } = this.state;
 
     return (
       <SafeAreaView style={styles.wrapper} removeClippedSubviews={false}>
@@ -270,9 +281,10 @@ class AddPage extends Component<AddPageProps, AddPageState> {
             {this.InputAccessoryView()}
           </ScrollView>
           <PrimaryButton
+            isDisabled={isSubmitting}
             style={styles.addButton}
             onPress={() => this.addExpense()}
-            text="Add Expense"
+            text={isSubmitting ? 'Adding...' : 'Add Expense'}
             type="primary"
           />
         </View>

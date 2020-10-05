@@ -1,3 +1,4 @@
+import 'react-native-get-random-values';
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -41,7 +42,7 @@ const TabNavigator = createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'black',
+      activeTintColor: '#80A881',
       inactiveTintColor: 'gray',
       showLabel: false,
       style: {

@@ -6,6 +6,7 @@ interface ButtonProps {
   text: string;
   onPress: () => void;
   type: 'primary' | 'secondary' | 'delete';
+  isDisabled?: boolean;
 }
 interface ButtonState {}
 
@@ -40,10 +41,11 @@ class Button extends Component<ButtonProps, ButtonState> {
   };
 
   render() {
-    const { text, type, style } = this.props;
+    const { text, type, style, isDisabled } = this.props;
     return (
       <View style={style ? [styles.container, style] : [styles.container]}>
         <TouchableOpacity
+          disabled={isDisabled}
           style={
             type === 'primary' ? [styles.button] : [styles.button, styles[type]]
           }

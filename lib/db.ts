@@ -1,4 +1,11 @@
-import RxDB, { RxDatabase, RxJsonSchema, RxDocument } from 'rxdb';
+import {
+  RxDatabase,
+  RxJsonSchema,
+  RxDocument,
+  addRxPlugin,
+  createRxDatabase,
+  PouchDB,
+} from 'rxdb';
 import { AsyncStorage } from 'react-native';
 import moment from 'moment';
 
@@ -87,9 +94,9 @@ const expenseSchema: RxJsonSchema<T.Expense> = {
   required: ['cost', 'description', 'budget', 'date'],
 };
 
-RxDB.plugin(require('pouchdb-adapter-asyncstorage'));
-RxDB.plugin(require('pouchdb-adapter-http'));
-RxDB.PouchDB.plugin(require('pouchdb-erase'));
+addRxPlugin(require('pouchdb-adapter-asyncstorage'));
+addRxPlugin(require('pouchdb-adapter-http'));
+PouchDB.plugin(require('pouchdb-erase'));
 
 const localDbName = 'localdb_budgetscalm_v0';
 
@@ -107,7 +114,7 @@ const DB: DB = {
     try {
       const syncToken = await DB.fetchSetting('syncToken');
 
-      const db = await RxDB.create({
+      const db = await createRxDatabase({
         name: localDbName,
         adapter: 'asyncstorage',
         multiInstance: false,
@@ -151,24 +158,36 @@ const DB: DB = {
     }
   },
   fetchBudgets: async (db, month) => {
-    const budgets: BudgetDocument[] = await db.budgets
-      .find()
-      .where('month')
-      .eq(month)
-      .exec();
-    return budgets.map((budget) => budget.toJSON()).sort(sortByName);
+    try {
+      const budgets: BudgetDocument[] = await db.budgets
+        .find()
+        .where('month')
+        .eq(month)
+        .exec();
+      return budgets.map((budget) => budget.toJSON()).sort(sortByName);
+    } catch (error) {
+      console.log('Failed to fetch budgets');
+      console.log(error);
+      return [];
+    }
   },
   fetchExpenses: async (db, month) => {
-    const expenses: ExpenseDocument[] = await db.expenses
-      .find()
-      .where('date')
-      .gte(`${month}-01`)
-      .lte(`${month}-31`)
-      .exec();
-    return expenses
-      .map((expense) => expense.toJSON())
-      .sort(sortByDate)
-      .reverse();
+    try {
+      const expenses: ExpenseDocument[] = await db.expenses
+        .find()
+        .where('date')
+        .gte(`${month}-01`)
+        .lte(`${month}-31`)
+        .exec();
+      return expenses
+        .map((expense) => expense.toJSON())
+        .sort(sortByDate)
+        .reverse();
+    } catch (error) {
+      console.log('Failed to fetch expenses');
+      console.log(error);
+      return [];
+    }
   },
   fetchSetting: async (name) => {
     const value = await AsyncStorage.getItem(`setting_${name}`);
@@ -399,12 +418,12 @@ const DB: DB = {
     await localDb.budgets.remove();
     await localDb.expenses.remove();
 
-    const db = new RxDB.PouchDB(localDbName);
+    const db = new PouchDB(localDbName);
     // @ts-ignore erase comes from pouchdb-erase
     db.erase();
     const syncToken = await DB.fetchSetting('syncToken');
     if (syncToken.length > 0) {
-      const remoteDb = new RxDB.PouchDB(syncToken);
+      const remoteDb = new PouchDB(syncToken);
       // @ts-ignore erase comes from pouchdb-erase
       await remoteDb.erase();
     }

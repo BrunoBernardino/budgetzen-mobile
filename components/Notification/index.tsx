@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 
 interface NotificationProps {
   isShowing?: boolean;
   message: string;
+  hideNotification: () => void;
 }
 
 const styles = StyleSheet.create({
@@ -46,7 +47,9 @@ const Loading: React.SFC<NotificationProps> = (
           : [styles.container]
       }
     >
-      <Text style={styles.text}>{props.message}</Text>
+      <TouchableOpacity onPress={props.hideNotification}>
+        <Text style={styles.text}>{props.message}</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

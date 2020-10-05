@@ -191,13 +191,29 @@ class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
   };
 
   render() {
-    const { isLoading, loadData, lastSyncDate, showAlert } = this.props;
+    const {
+      isLoading,
+      loadData,
+      lastSyncDate,
+      showAlert,
+      isUsingDarkMode,
+    } = this.props;
     const {
       isSyncModalVisible,
       isImportExportModalVisible,
       syncToken,
       currency,
     } = this.state;
+
+    const extraSegmentedControlProps: any = {};
+
+    if (isUsingDarkMode) {
+      extraSegmentedControlProps.tintColor = '#000';
+      extraSegmentedControlProps.backgroundColor = '#fff';
+    } else {
+      extraSegmentedControlProps.tintColor = '#fff';
+      extraSegmentedControlProps.backgroundColor = '#000';
+    }
 
     return (
       <SafeAreaView style={styles.wrapper} removeClippedSubviews={false}>
@@ -219,7 +235,7 @@ class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
             >
               <Text style={styles.label}>Sync</Text>
               <Switch
-                trackColor={{ false: '#CCC', true: '#000' }}
+                trackColor={{ false: '#CCC', true: '#80A881' }}
                 value={Boolean(syncToken) && Boolean(lastSyncDate)}
                 disabled
               />
@@ -233,7 +249,7 @@ class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
               values={currencyLabels}
               selectedIndex={currency === '' || currency === 'USD' ? 0 : 1}
               style={styles.currencyToggle}
-              tintColor="#fff"
+              {...extraSegmentedControlProps}
               onChange={(
                 event: NativeSyntheticEvent<
                   NativeSegmentedControlIOSChangeEvent

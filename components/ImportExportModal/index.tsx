@@ -71,7 +71,7 @@ class ImportExportModal extends Component<
   }
 
   onLearnMore = async () => {
-    Linking.openURL('https://budgets.calm.sh/import-export-file-format');
+    Linking.openURL('https://budgetzen.net/import-export-file-format');
   };
 
   onRequestImport = async () => {

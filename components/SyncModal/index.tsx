@@ -113,7 +113,7 @@ class SyncModal extends Component<SyncModalProps, SyncModalState> {
   };
 
   onGetToken = async () => {
-    Linking.openURL('https://budgets.calm.sh/get-sync-token');
+    Linking.openURL('https://budgetzen.net/get-sync-token');
   };
 
   onForceSync = async () => {

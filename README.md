@@ -1,8 +1,8 @@
-# Budgets, calm.
+# Budget Zen
 
-[![](https://github.com/BrunoBernardino/BudgetsCalm/workflows/Run%20Tests/badge.svg)](https://github.com/BrunoBernardino/BudgetsCalm/actions?workflow=Run+Tests)
+[![](https://github.com/BrunoBernardino/budgetzen-ios/workflows/Run%20Tests/badge.svg)](https://github.com/BrunoBernardino/budgetzen-ios/actions?workflow=Run+Tests)
 
-This is the repo for the mobile app. Website is at https://budgets.calm.sh
+This is the repo for the iOS app. Website is at https://budgetzen.net
 
 ## Development
 
@@ -11,9 +11,9 @@ make install
 make start
 make pretty
 make test
-make deploy  # publishes to everyone, prod
-make build  # builds iOS
-make upload  # uploads iOS build to the App Store
+make deploy   # publishes to everyone, prod
+make build   # builds iOS
+make upload   # uploads iOS build to the App Store
 ```
 
 https://docs.expo.io/versions/v39.0.0/distribution/building-standalone-apps/#5-test-it-on-your-device-or for testing on iOS simulator (does NOT require `make build`, `make deploy`, nor `make upload`)

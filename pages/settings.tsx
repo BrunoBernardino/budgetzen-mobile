@@ -281,7 +281,7 @@ class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
             />
             <PrimaryButton
               style={styles.helpButton}
-              onPress={() => Linking.openURL('mailto:budgets@calm.sh')}
+              onPress={() => Linking.openURL('mailto:help@budgetzen.net')}
               text="Get Help"
               type="primary"
             />

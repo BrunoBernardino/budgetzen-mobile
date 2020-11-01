@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Budgets, Calm.",
-    "slug": "BudgetsCalm",
+    "name": "Budget Zen",
+    "slug": "budgetzen",
     "privacy": "public",
-    "platforms": ["ios", "android", "web"],
-    "version": "1.0.5",
+    "platforms": ["ios"],
+    "version": "1.0.6",
     "orientation": "portrait",
     "backgroundColor": "#ffffff",
     "primaryColor": "#000000",
@@ -19,7 +19,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "6",
+      "buildNumber": "7",
       "supportsTablet": true,
       "usesIcloudStorage": true,
       "userInterfaceStyle": "automatic",

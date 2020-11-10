@@ -283,6 +283,25 @@ const DB: DB = {
       expense.date = moment().format('YYYY-MM-DD');
     }
 
+    // Check if there's an existing expense with a better budget
+    if (
+      (!expense.budget || expense.budget === 'Misc') &&
+      expense.id === 'newExpense'
+    ) {
+      const matchingExpenseDoc: ExpenseDocument = await db.expenses
+        .findOne()
+        .where('description')
+        .eq(expense.description)
+        .exec();
+
+      const matchingExpense = (matchingExpenseDoc &&
+        matchingExpenseDoc.toJSON()) || { budget: '' };
+
+      if (matchingExpense.budget) {
+        expense.budget = matchingExpense.budget;
+      }
+    }
+
     if (!expense.budget) {
       expense.budget = 'Misc';
     }

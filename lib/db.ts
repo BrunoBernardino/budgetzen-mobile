@@ -366,9 +366,20 @@ const DB: DB = {
       .exec();
 
     if (matchingExpenses.length > 0) {
-      throw new Error(
-        "There are expenses using this budget. You can't delete a budget with expenses",
-      );
+      // Check if there are duplicate budgets (can happen on slow sync)
+      const matchingBudgets: BudgetDocument[] = await db.budgets
+        .find()
+        .where('month')
+        .eq(existingBudget.month)
+        .where('name')
+        .eq(existingBudget.name)
+        .exec();
+
+      if (matchingBudgets.length === 1) {
+        throw new Error(
+          "There are expenses using this budget. You can't delete a budget with expenses",
+        );
+      }
     }
 
     await existingBudget.remove();

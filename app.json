@@ -4,7 +4,7 @@
     "slug": "budgetzen",
     "privacy": "public",
     "platforms": ["ios"],
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "backgroundColor": "#ffffff",
     "primaryColor": "#000000",
@@ -19,7 +19,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "8",
+      "buildNumber": "9",
       "supportsTablet": true,
       "usesIcloudStorage": true,
       "userInterfaceStyle": "automatic",

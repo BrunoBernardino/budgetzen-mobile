@@ -13,7 +13,6 @@ interface BudgetsPageProps extends T.WrappedComponentProps {}
 interface BudgetsPageState {
   isEditBudgetModalVisible: boolean;
   chosenBudget: null | T.Budget;
-  currency: string;
 }
 
 interface BudgetsToShow extends T.Budget {
@@ -67,15 +66,7 @@ class BudgetsPage extends Component<BudgetsPageProps, BudgetsPageState> {
     this.state = {
       isEditBudgetModalVisible: false,
       chosenBudget: null,
-      currency: '',
     };
-  }
-
-  async componentDidMount() {
-    const { getSetting } = this.props;
-    const currency = await getSetting('currency');
-
-    this.setState({ currency });
   }
 
   saveBudget = async (newBudget: T.Budget) => {
@@ -92,6 +83,7 @@ class BudgetsPage extends Component<BudgetsPageProps, BudgetsPageState> {
     const {
       isUsingDarkMode,
       isLoading,
+      currency,
       budgets,
       expenses,
       monthInView,
@@ -99,7 +91,7 @@ class BudgetsPage extends Component<BudgetsPageProps, BudgetsPageState> {
       showAlert,
       loadData,
     } = this.props;
-    const { isEditBudgetModalVisible, chosenBudget, currency } = this.state;
+    const { isEditBudgetModalVisible, chosenBudget } = this.state;
 
     let totalCost = 0;
     let totalBudget = 0;

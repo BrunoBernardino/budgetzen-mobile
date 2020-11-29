@@ -28,6 +28,7 @@ export interface WrappedComponentProps {
   isLoading: boolean;
   monthInView: string;
   lastSyncDate: string;
+  currency: string;
   budgets: Budget[];
   expenses: Expense[];
   loadData: (options?: {

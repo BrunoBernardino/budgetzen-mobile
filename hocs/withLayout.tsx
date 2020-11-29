@@ -19,6 +19,7 @@ interface LayoutState {
   lastSyncDate: string;
   budgets: T.Budget[];
   expenses: T.Expense[];
+  currency: string;
 }
 
 const notificationTimeoutInMS = 10 * 1000;
@@ -41,6 +42,7 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
         notificationMessage: '',
         monthInView: moment().format('YYYY-MM'),
         lastSyncDate: '',
+        currency: 'USD',
         budgets: [],
         expenses: [],
       };
@@ -127,9 +129,13 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
     };
 
     loadData = async (
-      options: { monthToLoad?: string; forceReload?: boolean } = {},
+      options: {
+        monthToLoad?: string;
+        forceReload?: boolean;
+        isComingFromEmptyState?: boolean;
+      } = {},
     ) => {
-      const { monthToLoad, forceReload } = options;
+      const { monthToLoad, forceReload, isComingFromEmptyState } = options;
 
       await this.ensureDBConnection(forceReload);
 
@@ -137,9 +143,12 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
 
       this.showLoading();
 
+      const currency = await this.getSetting('currency');
+
       this.setState({
         budgets: [],
         expenses: [],
+        currency,
         isUsingDarkMode: Appearance.getColorScheme() === 'dark',
       });
 
@@ -153,7 +162,7 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
       );
 
       // If this is for the current or next month and there are no budgets, create budgets based on the previous/current month.
-      if (budgets.length === 0) {
+      if (budgets.length === 0 && !isComingFromEmptyState) {
         const currentMonth = moment().format('YYYY-MM');
         const nextMonth = moment().add(1, 'month').format('YYYY-MM');
         const previousMonth = moment().subtract(1, 'month').format('YYYY-MM');
@@ -163,7 +172,7 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
           (!monthToLoad && monthInView === nextMonth)
         ) {
           await DB.copyBudgets(this.db, currentMonth, nextMonth);
-          await this.loadData({ monthToLoad });
+          await this.loadData({ monthToLoad, isComingFromEmptyState: true });
           return;
         }
 
@@ -172,7 +181,7 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
           (!monthToLoad && monthInView === currentMonth)
         ) {
           await DB.copyBudgets(this.db, previousMonth, currentMonth);
-          await this.loadData({ monthToLoad });
+          await this.loadData({ monthToLoad, isComingFromEmptyState: true });
           return;
         }
       }
@@ -332,6 +341,7 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
         lastSyncDate,
         budgets,
         expenses,
+        currency,
       } = this.state;
 
       return (
@@ -348,6 +358,7 @@ const withLayout: any = (WrappedComponent: any, sharedOptions: any) => {
             isLoading={isLoading}
             monthInView={monthInView}
             lastSyncDate={lastSyncDate}
+            currency={currency}
             budgets={budgets}
             expenses={expenses}
             loadData={this.loadData}

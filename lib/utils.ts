@@ -45,3 +45,15 @@ export const sortByMissingBudget = (
   const valueB = objectB.value - objectB.expensesCost;
   return valueB - valueA;
 };
+
+export const splitArrayInChunks = (array: any[], chunkLength: number) => {
+  const chunks = [];
+  let chunkIndex = 0;
+  const arrayLength = array.length;
+
+  while (chunkIndex < arrayLength) {
+    chunks.push(array.slice(chunkIndex, (chunkIndex += chunkLength)));
+  }
+
+  return chunks;
+};

@@ -9,7 +9,7 @@ import {
 import { AsyncStorage } from 'react-native';
 import moment from 'moment';
 
-import { sortByDate, sortByName } from './utils';
+import { sortByDate, sortByName, splitArrayInChunks } from './utils';
 
 import * as T from './types';
 
@@ -409,10 +409,41 @@ const DB: DB = {
   importData: async (db, replaceData, budgets, expenses) => {
     if (replaceData) {
       await DB.deleteAllData(db);
+
+      // Recreate collections
+      await db.collection({
+        name: 'budgets',
+        schema: budgetSchema,
+      });
+      await db.collection({
+        name: 'expenses',
+        schema: expenseSchema,
+      });
     }
 
-    await db.budgets.bulkInsert(budgets);
-    await db.expenses.bulkInsert(expenses);
+    const chunkLength = 200;
+
+    if (budgets.length > chunkLength) {
+      const chunkedBudgets = splitArrayInChunks(budgets, chunkLength);
+      for (const budgetsChunk of chunkedBudgets) {
+        await db.budgets.bulkInsert(budgetsChunk);
+        // Wait a second, to avoid hitting rate limits
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+    } else {
+      await db.budgets.bulkInsert(budgets);
+    }
+
+    if (expenses.length > chunkLength) {
+      const chunkedExpenses = splitArrayInChunks(expenses, chunkLength);
+      for (const expensesChunk of chunkedExpenses) {
+        await db.expenses.bulkInsert(expensesChunk);
+        // Wait a second, to avoid hitting rate limits
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+    } else {
+      await db.expenses.bulkInsert(expenses);
+    }
   },
   exportAllData: async (db) => {
     // NOTE: The queries look weird because .dump() and simple .find() were returning indexes and other stuff

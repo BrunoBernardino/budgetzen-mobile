@@ -24,7 +24,6 @@ interface ExpensesPageState {
   isFilterBudgetsModalVisible: boolean;
   isEditExpenseModalVisible: boolean;
   chosenExpense: null | T.Expense;
-  currency: string;
 }
 
 // TODO: Get these colors from the withLayout, according to the light/dark mode
@@ -109,15 +108,7 @@ class ExpensesPage extends Component<ExpensesPageProps, ExpensesPageState> {
       isFilterBudgetsModalVisible: false,
       isEditExpenseModalVisible: false,
       chosenExpense: null,
-      currency: '',
     };
-  }
-
-  async componentDidMount() {
-    const { getSetting } = this.props;
-    const currency = await getSetting('currency');
-
-    this.setState({ currency });
   }
 
   saveExpense = async (newExpense: T.Expense) => {
@@ -134,6 +125,7 @@ class ExpensesPage extends Component<ExpensesPageProps, ExpensesPageState> {
     const {
       isUsingDarkMode,
       isLoading,
+      currency,
       budgets,
       expenses,
       monthInView,
@@ -146,7 +138,6 @@ class ExpensesPage extends Component<ExpensesPageProps, ExpensesPageState> {
       isFilterBudgetsModalVisible,
       isEditExpenseModalVisible,
       chosenExpense,
-      currency,
     } = this.state;
 
     let expensesToShow = expenses;

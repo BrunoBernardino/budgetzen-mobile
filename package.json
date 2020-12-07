@@ -22,6 +22,7 @@
     "expo-document-picker": "8.4.0",
     "expo-file-system": "9.2.0",
     "expo-sharing": "8.4.1",
+    "intl": "1.2.5",
     "moment": "2.29.0",
     "pouchdb-adapter-asyncstorage": "6.4.1",
     "pouchdb-adapter-http": "7.2.2",

@@ -1,8 +1,8 @@
-# Budget Zen
+# Budget Zen - iOS + Android
 
 [![](https://github.com/BrunoBernardino/budgetzen-ios/workflows/Run%20Tests/badge.svg)](https://github.com/BrunoBernardino/budgetzen-ios/actions?workflow=Run+Tests)
 
-This is the repo for the iOS app. Website is at https://budgetzen.net
+This is the repo for the iOS and Android apps. Website is at https://budgetzen.net
 
 ## Development
 
@@ -12,11 +12,13 @@ make start
 make pretty
 make test
 make deploy   # publishes to everyone, prod
-make build   # builds iOS
-make upload   # uploads iOS build to the App Store
+make build/ios   # builds iOS
+make upload/ios   # uploads iOS build to the App Store
+make build/android   # builds Android
+make upload/android   # uploads Android build to the Play Store
 ```
 
-https://docs.expo.io/versions/v39.0.0/distribution/building-standalone-apps/#5-test-it-on-your-device-or for testing on iOS simulator (does NOT require `make build`, `make deploy`, nor `make upload`)
+https://docs.expo.io/versions/v39.0.0/distribution/building-standalone-apps/#5-test-it-on-your-device-or for testing on iOS simulator (does NOT require `make build/ios`, `make deploy`, nor `make upload/ios`)
 
 ## TODOs:
 
@@ -25,4 +27,3 @@ https://docs.expo.io/versions/v39.0.0/distribution/building-standalone-apps/#5-t
   - [ ] Add Expense
   - [ ] Edit Expense
   - [ ] Add/Edit Budget
-- [ ] Properly tweak UI for dark/light mode

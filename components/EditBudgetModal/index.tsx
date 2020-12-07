@@ -9,6 +9,7 @@ import {
   Keyboard,
   Button,
   Alert,
+  Platform,
 } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
@@ -266,7 +267,7 @@ class EditBudgetModal extends Component<
           />
         )}
 
-        {this.InputAccessoryView()}
+        {Platform.OS === 'ios' ? this.InputAccessoryView() : null}
       </BasicModal>
     );
   }

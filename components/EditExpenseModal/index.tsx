@@ -9,6 +9,7 @@ import {
   Keyboard,
   Button,
   Alert,
+  Platform,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -289,7 +290,7 @@ class EditExpenseModal extends Component<
           onPress={this.requestExpenseDelete}
         />
 
-        {this.InputAccessoryView()}
+        {Platform.OS === 'ios' ? this.InputAccessoryView() : null}
       </BasicModal>
     );
   }

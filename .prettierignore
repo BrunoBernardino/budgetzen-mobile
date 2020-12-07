@@ -3,3 +3,4 @@ node_modules
 .expo-shared
 web-build
 web-report
+play-store-key.json

@@ -32,10 +32,18 @@ pretty:
 deploy:
 	expo publish
 
-.PHONY: build
-build:
-	expo build:ios
+.PHONY: build/ios
+build/ios:
+	expo build:ios -t archive
 
-.PHONY: upload
-upload:
+.PHONY: build/android
+build/android:
+	expo build:android -t app-bundle
+
+.PHONY: upload/ios
+upload/ios:
 	expo upload:ios
+
+.PHONY: upload/android
+upload/android:
+	expo upload:android

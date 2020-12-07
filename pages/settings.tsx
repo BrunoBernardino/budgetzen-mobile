@@ -11,6 +11,7 @@ import {
   NativeSegmentedControlIOSChangeEvent,
   TouchableOpacity,
   Switch,
+  Platform,
 } from 'react-native';
 import SegmentedControlIOS from '@react-native-community/segmented-control';
 import { Linking } from 'expo';
@@ -209,10 +210,15 @@ class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
 
     if (isUsingDarkMode) {
       extraSegmentedControlProps.tintColor = '#000';
-      extraSegmentedControlProps.backgroundColor = '#fff';
+      if (Platform.OS === 'ios') {
+        extraSegmentedControlProps.backgroundColor = '#fff';
+      }
     } else {
       extraSegmentedControlProps.tintColor = '#fff';
       extraSegmentedControlProps.backgroundColor = '#000';
+      if (Platform.OS === 'android') {
+        extraSegmentedControlProps.tintColor = '#666';
+      }
     }
 
     return (

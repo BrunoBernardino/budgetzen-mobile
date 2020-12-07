@@ -12,6 +12,7 @@ import {
   Button,
   Image,
   RefreshControl,
+  Platform,
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -278,7 +279,7 @@ class AddPage extends Component<AddPageProps, AddPageState> {
               }}
             />
 
-            {this.InputAccessoryView()}
+            {Platform.OS === 'ios' ? this.InputAccessoryView() : null}
           </ScrollView>
           <PrimaryButton
             isDisabled={isSubmitting}

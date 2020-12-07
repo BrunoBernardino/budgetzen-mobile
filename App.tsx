@@ -1,4 +1,9 @@
 import 'react-native-get-random-values';
+import 'intl';
+
+(Intl as any).__disableRegExpRestore();
+import 'intl/locale-data/jsonp/en';
+
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';

@@ -31,7 +31,9 @@
       "bundleIdentifier": "com.emotionloop.budgetsCalm"
     },
     "android": {
-      "package": "com.emotionloop.budgetsCalm"
+      "package": "com.brn.budgetZen",
+      "versionCode": 1,
+      "googleServicesFile": "./play-store-key.json"
     }
   }
 }

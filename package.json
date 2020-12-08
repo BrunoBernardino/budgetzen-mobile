@@ -18,6 +18,7 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "3.0.0",
     "@react-native-community/segmented-control": "2.1.1",
+    "@react-native-picker/picker": "1.9.4",
     "expo": "39.0.0",
     "expo-document-picker": "8.4.0",
     "expo-file-system": "9.2.0",
@@ -34,7 +35,7 @@
     "react-native-gesture-handler": "1.7.0",
     "react-native-get-random-values": "1.5.0",
     "react-native-modal-datetime-picker": "9.0.0",
-    "react-native-picker-select": "8.0.0",
+    "react-native-picker-select": "8.0.4",
     "react-native-reanimated": "1.13.0",
     "react-native-screens": "2.10.1",
     "react-native-web": "0.13.7",

@@ -239,6 +239,7 @@ class AddPage extends Component<AddPageProps, AddPageState> {
               // InputAccessoryView={this.InputAccessoryView}
               style={{
                 inputIOS: styles.picker,
+                inputAndroid: styles.picker,
                 placeholder: { color: '#ccc' },
               }}
               onValueChange={(value: string) => {

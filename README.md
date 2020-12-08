@@ -1,6 +1,6 @@
-# Budget Zen - iOS + Android
+# Budget Zen - Mobile
 
-[![](https://github.com/BrunoBernardino/budgetzen-ios/workflows/Run%20Tests/badge.svg)](https://github.com/BrunoBernardino/budgetzen-ios/actions?workflow=Run+Tests)
+[![](https://github.com/BrunoBernardino/budgetzen-mobile/workflows/Run%20Tests/badge.svg)](https://github.com/BrunoBernardino/budgetzen-mobile/actions?workflow=Run+Tests)
 
 This is the repo for the iOS and Android apps. Website is at https://budgetzen.net
 

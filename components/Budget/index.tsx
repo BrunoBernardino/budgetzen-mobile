@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 
 import { formatNumber } from '../../lib/utils';
 
@@ -21,7 +27,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingHorizontal: 16,
     paddingVertical: 14,
-    borderRadius: 12,
+    borderRadius: Platform.OS === 'android' ? 3 : 12,
     shadowColor: '#000',
     shadowRadius: 4,
     shadowOpacity: 0.1,
@@ -32,6 +38,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginVertical: 8,
     marginHorizontal: 8,
+    borderWidth: Platform.OS === 'android' ? 0.1 : 0,
   },
 
   leftColumn: {

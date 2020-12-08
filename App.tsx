@@ -1,7 +1,12 @@
 import 'react-native-get-random-values';
 import 'intl';
 
-(Intl as any).__disableRegExpRestore();
+try {
+  (Intl as any).__disableRegExpRestore();
+} catch (error) {
+  // Ignore, it's only used in Android
+}
+
 import 'intl/locale-data/jsonp/en';
 
 import React from 'react';

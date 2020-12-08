@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, View, FlatList, Text } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  FlatList,
+  Text,
+  Platform,
+} from 'react-native';
 
 import PrimaryButton from '../components/Button';
 import MonthNavigation from '../components/MonthNavigation';
@@ -128,6 +135,7 @@ class BudgetsPage extends Component<BudgetsPageProps, BudgetsPageState> {
         style: {
           backgroundColor: '#efefef',
           shadowOpacity: 0.2,
+          borderWidth: Platform.OS === 'android' ? 0.1 : 0,
         },
       });
     }

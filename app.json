@@ -4,8 +4,8 @@
     "slug": "budgetzen",
     "privacy": "public",
     "platforms": ["ios", "android"],
-    "version": "1.2.0",
-    "orientation": "portrait",
+    "version": "1.2.1",
+    "orientation": "default",
     "backgroundColor": "#ffffff",
     "primaryColor": "#000000",
     "icon": "./assets/icon.png",
@@ -19,7 +19,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "10",
+      "buildNumber": "11",
       "supportsTablet": true,
       "usesIcloudStorage": true,
       "userInterfaceStyle": "automatic",
@@ -32,7 +32,7 @@
     },
     "android": {
       "package": "com.brn.budgetZen",
-      "versionCode": 3,
+      "versionCode": 4,
       "permissions": []
     }
   }

@@ -24,6 +24,12 @@ import AddPage from './pages/add';
 const db: RxDatabase = null;
 const sharedOptions = { db };
 
+type IconType =
+  | 'ios-add-circle'
+  | 'ios-albums'
+  | 'ios-layers'
+  | 'ios-settings-sharp';
+
 const TabNavigator = createBottomTabNavigator(
   {
     Settings: withLayout(SettingsPage, sharedOptions),
@@ -37,15 +43,15 @@ const TabNavigator = createBottomTabNavigator(
       // eslint-disable-next-line
       tabBarIcon: ({ tintColor }) => {
         const { routeName } = navigation.state;
-        let iconName: string;
+        let iconName: IconType;
         if (routeName === 'Add') {
           iconName = 'ios-add-circle';
         } else if (routeName === 'Expenses') {
           iconName = 'ios-albums';
         } else if (routeName === 'Budgets') {
-          iconName = 'ios-apps';
+          iconName = 'ios-layers';
         } else if (routeName === 'Settings') {
-          iconName = 'ios-settings';
+          iconName = 'ios-settings-sharp';
         }
 
         return <Ionicons name={iconName} size={30} color={tintColor} />;

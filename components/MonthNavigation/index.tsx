@@ -56,7 +56,7 @@ class MonthNavigation extends Component<
         <IconButton
           style={styles.button}
           onPress={this.goBack}
-          icon="ios-arrow-back"
+          icon="ios-chevron-back-sharp"
           size={32}
           color="#000"
         />
@@ -66,7 +66,7 @@ class MonthNavigation extends Component<
         <IconButton
           style={styles.button}
           onPress={this.goForward}
-          icon="ios-arrow-forward"
+          icon="ios-chevron-forward-sharp"
           size={32}
           color="#000"
         />

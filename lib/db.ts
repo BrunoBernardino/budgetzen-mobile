@@ -6,7 +6,7 @@ import {
   createRxDatabase,
   PouchDB,
 } from 'rxdb';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
 
 import { sortByDate, sortByName, splitArrayInChunks } from './utils';
@@ -154,6 +154,7 @@ const DB: DB = {
     } catch (error) {
       console.log('Failed to connect to DB');
       console.log(error);
+      console.log(JSON.stringify(error));
       return null;
     }
   },

@@ -257,9 +257,7 @@ class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
               style={styles.currencyToggle}
               {...extraSegmentedControlProps}
               onChange={(
-                event: NativeSyntheticEvent<
-                  NativeSegmentedControlIOSChangeEvent
-                >,
+                event: NativeSyntheticEvent<NativeSegmentedControlIOSChangeEvent>,
               ) => {
                 this.setState(
                   {

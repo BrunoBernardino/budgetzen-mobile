@@ -179,7 +179,7 @@ class ExpensesPage extends Component<ExpensesPageProps, ExpensesPageState> {
               returnKeyType="done"
             />
             <IconButton
-              icon="ios-options"
+              icon="ios-options-sharp"
               size={32}
               color={
                 filterBudgets.size > 0

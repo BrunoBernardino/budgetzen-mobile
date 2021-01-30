@@ -92,8 +92,14 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
 
-  deleteButton: {
+  updateButton: {
     marginTop: 68,
+    marginBottom: 20,
+    minHeight: 16,
+  },
+
+  deleteButton: {
+    marginTop: 20,
   },
 });
 
@@ -281,6 +287,13 @@ class EditExpenseModal extends Component<
               date: moment(chosenDate).format('YYYY-MM-DD'),
             });
           }}
+        />
+
+        <PrimaryButton
+          style={styles.updateButton}
+          type="primary"
+          text={isSubmitting ? 'Saving...' : 'Save Expense'}
+          onPress={this.onSaveExpense}
         />
 
         <PrimaryButton

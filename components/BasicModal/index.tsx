@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     backgroundColor: '#000',
+    height: 50,
   },
 
   headerButton: {
@@ -65,15 +66,15 @@ const BasicModal: React.SFC<BasicModalProps> = (
           {!isSubmitting && (
             <>
               <IconButton
-                icon="ios-arrow-round-back"
-                size={42}
+                icon="ios-arrow-back-sharp"
+                size={30}
                 color={styles.headerButton.color}
                 onPress={onDismiss}
                 style={[styles.headerButton, { alignItems: 'flex-start' }]}
               />
               <IconButton
                 icon="ios-checkmark"
-                size={42}
+                size={30}
                 color={styles.headerButton.color}
                 onPress={onConfirm}
                 style={[styles.headerButton, { alignItems: 'flex-end' }]}

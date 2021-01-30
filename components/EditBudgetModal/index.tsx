@@ -89,8 +89,14 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
 
-  deleteButton: {
+  updateButton: {
     marginTop: 68,
+    marginBottom: 20,
+    minHeight: 16,
+  },
+
+  deleteButton: {
+    marginTop: 20,
   },
 });
 
@@ -257,6 +263,22 @@ class EditBudgetModal extends Component<
             });
           }}
         />
+
+        {budget.id === 'newBudget' ? (
+          <PrimaryButton
+            style={styles.updateButton}
+            type="primary"
+            text={isSubmitting ? 'Creating...' : 'Create Budget'}
+            onPress={this.onSaveBudget}
+          />
+        ) : (
+          <PrimaryButton
+            style={styles.updateButton}
+            type="primary"
+            text={isSubmitting ? 'Saving...' : 'Save Budget'}
+            onPress={this.onSaveBudget}
+          />
+        )}
 
         {budget.id !== 'newBudget' && (
           <PrimaryButton

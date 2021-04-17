@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const currencyLabels = ['$', '€'];
-const currencyValues = ['USD', 'EUR'];
+const currencyLabels = ['$', '€', '£'];
+const currencyValues = ['USD', 'EUR', 'GBP'];
 
 class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
   constructor(props: SettingsPageProps) {
@@ -206,6 +206,10 @@ class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
       currency,
     } = this.state;
 
+    const selectedCurrencyIndex = currencyValues.findIndex(
+      (_currency) => currency === _currency,
+    );
+
     const extraSegmentedControlProps: any = {};
 
     if (isUsingDarkMode) {
@@ -253,7 +257,9 @@ class SettingsPage extends Component<SettingsPageProps, SettingsPageState> {
             <Text style={styles.label}>Currency</Text>
             <SegmentedControlIOS
               values={currencyLabels}
-              selectedIndex={currency === '' || currency === 'USD' ? 0 : 1}
+              selectedIndex={
+                selectedCurrencyIndex === -1 ? 0 : selectedCurrencyIndex
+              }
               style={styles.currencyToggle}
               {...extraSegmentedControlProps}
               onChange={(

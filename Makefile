@@ -1,6 +1,7 @@
 .PHONY: install
 install:
 	yarn install
+	npm install -g expo-cli@4.4.1
 
 .PHONY: start
 start:

@@ -14,6 +14,10 @@ import { sortByDate, sortByName, splitArrayInChunks } from './utils';
 import * as T from './types';
 
 interface DB {
+  _hasFinishedFirstSync: {
+    budgets: boolean;
+    expenses: boolean;
+  };
   updateSyncDate: (alive: boolean) => Promise<void>;
   connect: () => Promise<RxDatabase>;
   fetchBudgets: (db: RxDatabase, month: string) => Promise<T.Budget[]>;
@@ -101,6 +105,10 @@ PouchDB.plugin(require('pouchdb-erase'));
 const localDbName = 'localdb_budgetscalm_v0';
 
 const DB: DB = {
+  _hasFinishedFirstSync: {
+    budgets: false,
+    expenses: false,
+  },
   updateSyncDate: async (alive = true) => {
     const lastSyncDate = moment().format('YYYY-MM-DD HH:mm:ss');
     if (alive) {
@@ -148,6 +156,15 @@ const DB: DB = {
         expensesSync.change$.subscribe((change) =>
           DB.updateSyncDate(change.ok),
         );
+        budgetsSync.complete$.subscribe(() => {
+          DB._hasFinishedFirstSync.budgets = true;
+        });
+        expensesSync.complete$.subscribe(() => {
+          DB._hasFinishedFirstSync.expenses = true;
+        });
+      } else {
+        DB._hasFinishedFirstSync.budgets = true;
+        DB._hasFinishedFirstSync.expenses = true;
       }
 
       return db;
@@ -394,6 +411,14 @@ const DB: DB = {
     await existingExpense.remove();
   },
   copyBudgets: async (db, originalMonth, destinationMonth) => {
+    // Don't copy anything until we're done with the first sync
+    if (
+      !DB._hasFinishedFirstSync.expenses ||
+      !DB._hasFinishedFirstSync.budgets
+    ) {
+      return;
+    }
+
     const originalBudgets = await DB.fetchBudgets(db, originalMonth);
     const destinationBudgets = originalBudgets.map((budget) => {
       const newBudget: T.Budget = { ...budget };

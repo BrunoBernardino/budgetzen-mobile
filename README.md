@@ -13,7 +13,7 @@ make pretty
 make test
 make deploy   # publishes to everyone, prod
 make build/ios   # builds iOS
-make upload/ios   # uploads iOS build to the App Store
+make upload/ios   # uploads iOS build to the App Store (no longer available, use Transporter with the build from the above command)
 make build/android   # builds Android
 make upload/android   # uploads Android build to the Play Store
 ```

@@ -4,6 +4,8 @@
 
 This is the repo for the iOS and Android apps. Website is at https://budgetzen.net
 
+**NOTE**: The mobile app is no longer available in the Play Store or App Store for ideological reasons. You can still build it from this repo yourself, or download + install the APK from the [Releases page](https://github.com/BrunoBernardino/budgetzen-mobile/releases). Personally, I'm using the [web app version](https://app.budgetzen.net) now for both mobile and desktop, though.
+
 ## Development
 
 ```bash
@@ -11,18 +13,14 @@ make install
 make start
 make pretty
 make test
-make deploy   # publishes to everyone, prod
-make build/ios   # builds iOS
-make upload/ios   # uploads iOS build to the App Store (no longer available, use Transporter with the build from the above command)
-make build/android   # builds Android
-make upload/android   # uploads Android build to the Play Store
+make deploy   # publishes to everyone (prod)
+make build/android   # builds Android APK (manually added to releases)
 ```
 
-https://docs.expo.io/versions/v39.0.0/distribution/building-standalone-apps/#5-test-it-on-your-device-or for testing on iOS simulator (does NOT require `make build/ios`, `make deploy`, nor `make upload/ios`)
+See [an older commit](https://github.com/BrunoBernardino/budgetzen-mobile/tree/7bd2ff89746167168d7b54e6982501fd9c668556#development) for other commands, related to building this for your iOS device.
 
 ## TODOs:
 
-- [ ] When running `make deploy`, update/write the package.json:build automatically
 - [ ] Try to unify UI/UX with the BasicModal for the Date Picker and for the Budget Picker (use a regular picker inside the modal)
   - [ ] Add Expense
   - [ ] Edit Expense

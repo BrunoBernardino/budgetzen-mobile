@@ -4,7 +4,7 @@
 
 This is the repo for the iOS and Android apps. Website is at https://budgetzen.net
 
-**NOTE**: The mobile app is no longer available in the Play Store or App Store for ideological reasons. You can still build it from this repo yourself, or download + install the APK from the [Releases page](https://github.com/BrunoBernardino/budgetzen-mobile/releases). Personally, I'm using the [web app version](https://app.budgetzen.net) now for both mobile and desktop, though.
+**NOTE**: The mobile app is no longer available in the Play Store or App Store for ideological reasons. You can still build it from this repo yourself, or download + install the APK from the [Releases page](https://github.com/BrunoBernardino/budgetzen-mobile/releases). The new, end-to-end encrypted version (v2) is currently available as a [PWA/web app](https://app.budgetzen.net), which works for both mobile and desktop, and still has the source code publicly available.
 
 ## Development
 
